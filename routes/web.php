@@ -1,6 +1,9 @@
 <?php
 
-use App\Http\Controllers\siteController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [siteController::class, 'index']);
+Route::get('/', [SiteController::class, 'index']);
+
+Route::get('/login', [LoginController::class, 'index']);

@@ -33,7 +33,7 @@ class LoginRequest extends FormRequest
         return [
             'email.required' => 'O campo de Email é obrigatório',
             'email.email' => 'O campo de Email deve ser um endereço válido',
-            'password.required' => 'O campo de senha deve ser obrigatório',
+            'password.required' => 'O campo de senha é obrigatório',
             'password.min' => 'A senha deve ter no mínimo 6 caracteres',
             'password.max' => 'A senha deve ter no máximo 60 caracteres'
         ];

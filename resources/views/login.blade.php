@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="flex flex-col gap-2 mb-2">
-                    <label for="password">Password</label>
+                    <label for="password">Senha</label>
                     <input name="password" placeholder="********" type="password" class="bg-white p-2 border-2 @error('password')border-red-500 @enderror">
                     @error('password')
                         <p class="text-sm text-red-500">
@@ -32,6 +32,11 @@
 
                 <button type="submit" class="bg-white p-2 border-2">Entrar</button>
             </form>
+
+            <span>
+                <p class="text-center mt-4">Ainda não tem conta? <a href="{{route('site.register')}}" class="underline hover:opacity-50 transition">Registre-se</a></p>
+            </span>
+            
         </section>
     </main>
 </x-layout>

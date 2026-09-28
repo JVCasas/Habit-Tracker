@@ -19,7 +19,7 @@ class Habit extends Model
         return $this->belongsTo(User::class, foreignKey: 'user_id');
     }
 
-    public function habitsLogs():HasMany
+    public function habitLogs():HasMany
     {
         return $this->hasMany(HabitLog::class);
     }

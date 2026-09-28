@@ -1,9 +1,16 @@
 <x-layout>
     <main class="py-10">
-        <h1>Dashboard</h1>
-        <p>
-            Bem Vindo(a), {{ auth()->user()->name }}!
-        </p>
+        <h1 class="font-bold text-4xl text-center">Dashboard</h1>
+        
+        <a href="{{route('habits.create')}}" class="p-2 border-2 bg-white font-bold block">Adicionar Hábito</a>
+
+        @session('success')
+        <div class="flex">
+            <p class="bg-green-100 border border-green-400 text-green-700 mb-4 p-3">
+                {{session('success')}}
+            </p>
+        </div>
+        @endsession
         <div>
             <h2 class="text-xl mt-4">Listagem dos habitos</h2>
             <ul class="flex flex-col gap-2">

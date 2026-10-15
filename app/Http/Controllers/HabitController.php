@@ -65,6 +65,12 @@ class HabitController extends Controller
      */
     public function destroy(Habit $habit)
     {
-        //
+        if($habit->user_id != auth()->user()->id){
+            abort(code: 403, message:'Acesso não autorizado!');
+        }
+
+        $habit->delete();
+
+        return redirect()->route('site.dashboard')->with('success', 'Habito deletado com sucesso');
     }
 }

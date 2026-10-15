@@ -28,4 +28,6 @@ Route::middleware('auth')->group(function (){
 
     Route::post('/dashboard/habits/create', [HabitController::class, 'store'])->name('habits.store');
 
+    Route::delete('/dashboard/habits/{habit}', [HabitController::class, 'destroy'])->name('habit.destroy');
+
 });

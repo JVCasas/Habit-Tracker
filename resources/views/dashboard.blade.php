@@ -19,6 +19,15 @@
                     <div class="flex gap-2 items-center">
                         <p class="font-bold text-xl">- {{ $habit->name }}</p>
                         <p>[{{ $habit->habitLogs->count() }}]</p>
+                        
+                        <form action="{{ route('habit.destroy', $habit) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit" class="bg-red-500 text-white p1 hover:opacity-50 cursor-pointer">
+                                <x-icons.trash/>
+                            </button>
+                        </form>
                     </div>
                 </li>
                 @empty

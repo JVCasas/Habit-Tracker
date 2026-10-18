@@ -3,7 +3,7 @@
         <h1>Editar Hábito</h1>
 
         <section class="bg-white max-w-[600px] mx-auto p-10 pb-6 border-2 mt-4">
-            <form action="{{route('habit.update', $habit->id)}}" method="post">
+            <form action="{{route('habits.update', $habit->id)}}" method="post">
                 @csrf
                 @method('PUT')
                 <div class="flex flex-col gap-2 mb-2">

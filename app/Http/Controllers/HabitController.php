@@ -13,7 +13,8 @@ class HabitController extends Controller
      */
     public function index()
     {
-        //
+        $habits = auth()->user()->habits;
+        return view('dashboard', compact(var_name:'habits'));
     }
 
     /**
@@ -33,7 +34,7 @@ class HabitController extends Controller
 
         auth()->user()->habits()->create($validated);
 
-        return redirect()->route('site.dashboard')->with('success', 'Habito criado com sucesso!');
+        return redirect()->route('habits.index')->with('success', 'Habito criado com sucesso!');
     }
 
     /**
@@ -63,7 +64,7 @@ class HabitController extends Controller
 
         $habit->update($request->all());
 
-        return redirect()->route('site.dashboard')->with('success', 'Habito atualizado com sucesso');
+        return redirect()->route('habits.index')->with('success', 'Habito atualizado com sucesso');
     }
 
     /**
@@ -77,6 +78,6 @@ class HabitController extends Controller
 
         $habit->delete();
 
-        return redirect()->route('site.dashboard')->with('success', 'Habito deletado com sucesso');
+        return redirect()->route('habits.index')->with('success', 'Habito deletado com sucesso');
     }
 }

@@ -24,7 +24,7 @@ class LoginController extends Controller
         {
             $request->session()->regenerate();
 
-            return redirect()->intended(default: '/dashboard');
+            return redirect()->intended(route(name: 'habits.index'));
         }
         
         return back()->withErrors(['email'=> 'Email Invalido']);

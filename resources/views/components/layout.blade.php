@@ -7,7 +7,7 @@
     @vite('resources/css/app.css')
     <title>{{config('app.name')}}</title>
 </head>
-<body class="bg-[#ffedd6]">
+<body class="bg-[#ffedd6] font-mono">
     <x-header/>
     {{ $slot }}
     <x-footer/>

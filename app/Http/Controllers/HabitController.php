@@ -17,6 +17,12 @@ class HabitController extends Controller
         return view('dashboard', compact(var_name:'habits'));
     }
 
+    public function manage()
+    {
+        $habits = auth()->user()->habits;
+        return view('manager', compact(var_name:'habits'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

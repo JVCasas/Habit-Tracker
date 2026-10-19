@@ -1,19 +1,24 @@
 <header class="bg-white border-b-2 flex items-center justify-between p-4">
-    <div>
-        Logo
+    <div class="flex gap-2 items-center">
+        <a href="{{ route('habits.index') }}" class="habit-btn habit-shadow-lg px-2 py-1 bg-habit-orange">
+            HT
+        </a>
+        <p class="text-lg">Habit Tracker</p>
     </div>
 
     <div>
-        GitHub
 
         @auth
             <form action="{{ route('auth.logout') }}" method="POST">
-                <button type="submit" class="bg-red-400 p-2 border-2">Logout</a>
+                <button type="submit" class="p-2 habit-shadow-lg habit-btn">Logout</a>
             </form>
         @endauth
 
         @guest
-            <a href="{{ route('site.login') }}" class="bg-gray-100 p-2 border-2">Login</a>
+            <div class="flex gap-2">
+                <a href="{{ route('site.register') }}" class="p-2 habit-shadow-lg bg-white-500">Cadastrar</a>
+                <a href="{{ route('site.login') }}" class="p-2 habit-shadow-lg bg-habit-orange">Login</a>
+            </div>
         @endguest
 
     </div>

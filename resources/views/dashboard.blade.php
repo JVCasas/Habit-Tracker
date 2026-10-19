@@ -1,8 +1,7 @@
 <x-layout>
-    <main class="py-10">
-        <h1 class="font-bold text-4xl text-center">Dashboard</h1>
+    <main class="py-10 px-4 min-h-[calc(100vh-160px)]">
         
-        <a href="{{route('habits.create')}}" class="p-2 border-2 bg-white font-bold block">Adicionar Hábito</a>
+        <x-navbar/>
 
         @session('success')
         <div class="flex">
@@ -12,24 +11,13 @@
         </div>
         @endsession
         <div>
-            <h2 class="text-xl mt-4">Listagem dos habitos</h2>
+            <h2 class="text-lg mt-8 mb-4">{{ date('d/m/Y') }}</h2>
             <ul class="flex flex-col gap-2">
                 @forelse($habits as $habit)
-                <li class="pl-4">
-                    <div class="flex gap-2 items-center">
-                        <p class="font-bold text-xl">- {{ $habit->name }}</p>
-                        <p>[{{ $habit->habitLogs->count() }}]</p>
-                        <a href="{{ route('habits.edit', $habit)}}" class="bg-white text-white p1 hover:opacity-50 cursor-pointer">
-                            <x-icons.pencil/>
-                        </a>
-                        <form action="{{ route('habits.destroy', $habit) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-
-                            <button type="submit" class="bg-red-500 text-white p1 hover:opacity-50 cursor-pointer">
-                                <x-icons.trash/>
-                            </button>
-                        </form>
+                <li class="habit-shadow-lg p-2 bg-[#ffdaac]">
+                    <div class="flex items-center gap-2">
+                        <input type="checkbox" class="w-5 h-5" name="" id="">
+                        <p class="font-bold text-lg">{{ $habit->name }}</p>
                     </div>
                 </li>
                 @empty

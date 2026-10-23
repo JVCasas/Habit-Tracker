@@ -14,11 +14,15 @@
             <h2 class="text-lg mt-8 mb-4">{{ date('d/m/Y') }}</h2>
             <ul class="flex flex-col gap-2">
                 @forelse($habits as $habit)
+                @php
+                    $wasCompletedToday = $habit->habitLogs->where('user_id', auth()->user()->id)->where('completed_at', \Carbon\Carbon::today()->toDateString())->isNotEmpty();
+                @endphp
                 <li class="habit-shadow-lg p-2 bg-[#ffdaac]">
-                    <div class="flex items-center gap-2">
-                        <input type="checkbox" class="w-5 h-5" name="" id="">
+                    <form method="POST" action="{{ route('habits.toggle', $habit->id) }}" id="form-{{ $habit->id }}" class="flex items-center gap-2">
+                        @csrf
+                        <input type="checkbox" onchange="document.getElementById('form-{{ $habit->id }}').submit()" {{ $wasCompletedToday ? 'checked' : ''}} class="w-5 h-5" name="" id="">
                         <p class="font-bold text-lg">{{ $habit->name }}</p>
-                    </div>
+                    </form>
                 </li>
                 @empty
                 <p>Você ainda não possui nenhum hábito.</p>

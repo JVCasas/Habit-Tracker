@@ -24,4 +24,6 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/dashboard/habits/manage', [HabitController::class, 'manage'])->name('habits.manage');
 
+    Route::post('/dashboard/habits/{habit}/toggle', [HabitController::class, 'toggle'])->name('habits.toggle');
+
 });

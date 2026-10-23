@@ -6,11 +6,14 @@ use App\Http\Requests\HabitRequest;
 use App\Models\Habit;
 use App\Models\HabitLog;
 use Carbon\Carbon;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HabitController extends Controller
 {
+    use AuthorizesRequests;
+
     /**
      * Display a listing of the resource.
      */
@@ -59,6 +62,7 @@ class HabitController extends Controller
      */
     public function edit(Habit $habit)
     {
+        $this->authorize('update', $habit);
         return view('habits.edit', compact('habit'));
     }
 
@@ -67,9 +71,7 @@ class HabitController extends Controller
      */
     public function update(HabitRequest $request, Habit $habit)
     {
-        if($habit->user_id != Auth::user()->id){
-            abort(code: 403, message:'Acesso não autorizado!');
-        }
+        $this->authorize('update', $habit);
 
         $habit->update($request->all());
 
@@ -81,9 +83,7 @@ class HabitController extends Controller
      */
     public function destroy(Habit $habit)
     {
-        if($habit->user_id != Auth::user()->id){
-            abort(code: 403, message:'Acesso não autorizado!');
-        }
+        $this->authorize('delete', $habit);
 
         $habit->delete();
 
@@ -92,9 +92,7 @@ class HabitController extends Controller
 
     public function toggle(Habit $habit)
     {
-        if($habit->user_id != Auth::user()->id){
-            abort(403, 'Acesso não autorizado!');
-        }
+        $this->authorize('toggle', $habit);
 
         $today = Carbon::today()->toDateString();
         $log = HabitLog::query()->where('habit_id', $habit->id)->where('completed_at', $today)->first();

@@ -19,7 +19,7 @@ class HabitController extends Controller
      */
     public function index()
     {
-        $habits = Auth::user()->habits;
+        $habits = Auth::user()->habits()->with('habitLogs')->get();
         return view('dashboard', compact(var_name:'habits'));
     }
 

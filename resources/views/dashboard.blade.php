@@ -1,5 +1,5 @@
 <x-layout>
-    <main class="py-10 px-4 min-h-[calc(100vh-160px)]">
+    <main class="py-10 px-4 max-w-5xl mx-auto min-h-[calc(100vh-160px)]">
         
         <x-navbar/>
 

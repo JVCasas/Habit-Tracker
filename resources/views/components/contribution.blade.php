@@ -1,7 +1,6 @@
-@props(['habit', 'year' => null])
+@props(['habit', 'selectedYear' => null])
 
 @php
-  $selectedYear = $year ?? now()->year;
   $weeks = App\Models\Habit::generateYearGrid($selectedYear);
 @endphp
 

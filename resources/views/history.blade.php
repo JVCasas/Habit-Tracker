@@ -3,16 +3,17 @@
         
         <x-navbar/>
 
-        @session('success')
-        <div class="flex">
-            <p class="bg-green-100 border border-green-400 text-green-700 mb-4 p-3">
-                {{session('success')}}
-            </p>
+        <div class="my-4">
+            @foreach($avalibleYears as $year)
+            <a href="{{ route('habits.history', $year) }}" class="habit-btn habit-shadow-lg p-2 inline-block {{ $selectedYear == $year ? 'bg-habit-orange' : 'bg-white'}}">
+                {{$year}}
+            </a>
+            @endforeach
         </div>
-        @endsession
+
         <div>
             @forelse($habits as $habit)
-            <x-contribution :habit="$habit" :year="$selectedYear"/>
+            <x-contribution :$habit :$selectedYear/>
             @empty
             <div>
                 <p class="text-black">

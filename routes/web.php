@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function (){
 
     Route::resource(name:'/dashboard/habits', controller:HabitController::class)->except('show');
 
-    Route::get('dashboard/habits/history', [HabitController::class, 'history'])->name('habits.history');
+    Route::get('dashboard/habits/history/{year?}', [HabitController::class, 'history'])->name('habits.history');
 
     Route::get('/dashboard/habits/manage', [HabitController::class, 'manage'])->name('habits.manage');
 

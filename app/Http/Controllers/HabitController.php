@@ -29,9 +29,15 @@ class HabitController extends Controller
         return view('manager', compact(var_name:'habits'));
     }
 
-    public function history()
+    public function history(?int $year = null)
     {
-        $selectedYear = Carbon::now()->year;
+        $selectedYear = $year ?? Carbon::now()->year;
+        $avalibleYears = range(2024, Carbon::now()->year);
+
+        if(!in_array($selectedYear, $avalibleYears)){
+            abort(404, 'Ano Invalido!');
+        }
+
         $startDate = Carbon::create($selectedYear, month: 1, day: 1);
         $endDate = Carbon::create($selectedYear, month: 12, day: 31, hour:23, minute:59, second:59);
         $habits = Auth::user()->habits()->with([
@@ -40,7 +46,7 @@ class HabitController extends Controller
                 $query->whereBetween('completed_at', [$startDate, $endDate]);
             }
         ])->get();
-        return view('history', compact('habits', 'selectedYear'));
+        return view('history', compact('habits', 'selectedYear', 'avalibleYears'));
     }
 
     /**

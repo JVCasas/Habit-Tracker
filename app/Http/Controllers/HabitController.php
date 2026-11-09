@@ -107,7 +107,7 @@ class HabitController extends Controller
 
         $habit->delete();
 
-        return redirect()->route('habits.index')->with('success', 'Habito deletado com sucesso');
+        return redirect()->route('habits.index')->with('warning', 'Habito deletado com sucesso');
     }
 
     public function toggle(Habit $habit)
@@ -120,14 +120,16 @@ class HabitController extends Controller
         if($log)
         {
             $log->delete();
+            $alert = 'warning';
             $message = 'Hábito desmarcado';
         }
         else
         {
             HabitLog::create(['user_id'=> Auth::user()->id,'habit_id' => $habit->id, 'completed_at' => $today]);
+            $alert = 'success';
             $message = 'Hábito concluido';
         }
-        return redirect()->route('habits.index')->with('success', $message);
+        return redirect()->route('habits.index')->with($alert, $message);
     }
 
 }

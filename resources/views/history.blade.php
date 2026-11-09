@@ -2,7 +2,6 @@
     <main class="py-10 px-4 max-w-5xl mx-auto min-h-[calc(100vh-160px)]">
         
         <x-navbar/>
-
         <div class="my-4">
             @foreach($avalibleYears as $year)
             <a href="{{ route('habits.history', $year) }}" class="habit-btn habit-shadow-lg p-2 inline-block {{ $selectedYear == $year ? 'bg-habit-orange' : 'bg-white'}}">

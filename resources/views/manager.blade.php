@@ -3,13 +3,6 @@
         
         <x-navbar/>
 
-        @session('success')
-        <div class="flex">
-            <p class="bg-green-100 border border-green-400 text-green-700 mb-4 p-3">
-                {{session('success')}}
-            </p>
-        </div>
-        @endsession
         <div>
             <h2 class="text-lg mt-8 mb-4">Gerenciar Hábitos</h2>
             <ul class="flex flex-col gap-2">

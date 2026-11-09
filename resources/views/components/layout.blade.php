@@ -7,9 +7,11 @@
     @vite('resources/css/app.css')
     <title>{{config('app.name')}}</title>
 </head>
-<body class="bg-[#ffedd6] font-mono">
+<body class="bg-[#ffedd6] font-mono relative">
     <x-header/>
     {{ $slot }}
     <x-footer/>
+    <x-toast/>
+    <script src="{{ Vite::asset('resource/js/app.js') }}"></script>
 </body>
 </html>

@@ -1,20 +1,20 @@
 <x-layout>
     <main class="py-10">
-        <h1>Novo Hábito</h1>
+        <h1 class="text-2xl text-center font-bold">Novo Hábito</h1>
 
-        <section class="bg-white max-w-[600px] mx-auto p-10 pb-6 border-2 mt-4">
+        <section class="habit-shadow-lg bg-white max-w-[600px] mx-auto p-10 pb-6 mt-4">
             <form action="{{route('habits.store')}}" method="post">
                 @csrf
                 <div class="flex flex-col gap-2 mb-2">
-                    <label for="name">Nome</label>
+                    <label for="name" class="text-xl font-bold">Nome</label>
                     <input name="name" placeholder="Meu Hábito" type="text" class="bg-white p-2 border-2 @error('name')border-red-500 @enderror">
                     @error('name')
-                        <p class="text-sm text-red-500">
+                    <p class="text-sm text-red-500">
                         {{$message}}
                     </p>
                     @enderror
                 </div>
-                <button type="submit" class="bg-white p-2 border-2">Registrar</button>
+                <button type="submit" class="habit-shadow-lg habit-btn bg-habit-orange p-2 mt-2 w-full">Registrar</button>
             </form>
         </section>
     </main>
